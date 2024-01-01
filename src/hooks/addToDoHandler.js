@@ -1,11 +1,13 @@
+import loadingStatus from "../helpers/loadingStatus";
+
 export const addToDoItemHandler = async (item_obj, dispatch, setLoadingState) => {
     try {
-        const response = await fetch('YOUR_API_ENDPOINT_HERE', {
+        const response = await fetch('https://jsonplaceholder.typicode.com/todos/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ text: item_obj.text }),
+            body: JSON.stringify(item_obj),
         });
         if (!response.ok) {
             throw new Error('Failed to add todo');
@@ -13,6 +15,6 @@ export const addToDoItemHandler = async (item_obj, dispatch, setLoadingState) =>
         const data = await response.json();
         dispatch({ type: 'ADD_TODO', payload: data });
     } catch (error) {
-        setError(error.message);
+        setLoadingState(loadingStatus.hasErrores)
     }
 }

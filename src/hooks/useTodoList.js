@@ -7,6 +7,7 @@ import loadingStatus from "../helpers/loadingStatus";
 import { toggleToDoStatushandler } from "./toggleToDoItemStatushandler";
 import { updateToDoStatushandler } from "./updateToDoItemHandler";
 import { removeToDoHandler } from "./removeToDoHandler";
+import { addToDoItemHandler } from "./addToDoHandler";
 
 const useTodoList = () => {
     const initialState = {
@@ -48,7 +49,12 @@ const useTodoList = () => {
     const removeToDoStatus = useCallback(async todoId =>
         removeToDoHandler(todoId, dispatch, setLoadingState), [])
 
-    return { todoList: state?.todoList, loadingState, toggleToDoStatus, updateToDoStatus, removeToDoStatus }
+    const addToDoItem = async (item_obj) => { addToDoItemHandler(item_obj, dispatch, setLoadingState) }
+
+    return {
+        todoList: state?.todoList, loadingState, toggleToDoStatus, updateToDoStatus,
+        removeToDoStatus, addToDoItem
+    }
 }
 
 

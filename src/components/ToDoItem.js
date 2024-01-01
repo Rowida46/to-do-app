@@ -11,6 +11,7 @@ const ToDoItem = React.memo(({ todoitem, updateToDoStatus, toggleToDoStatus, rem
     };
 
     const handleUpdateText = () => {
+        if (!editingText.trim()) return;
         updateToDoStatus(id, editingText)
         setisEditing(false)
     };
@@ -23,7 +24,7 @@ const ToDoItem = React.memo(({ todoitem, updateToDoStatus, toggleToDoStatus, rem
             {!isEditing ? (
                 <><div class="d-flex align-items-center">
                     <input class="form-check-input me-2" type="checkbox" value="" aria-label="..."
-                        checked={!completed} onClick={() => handleCheckboxChange(id, completed)} />
+                        checked={completed} onClick={() => handleCheckboxChange(id, completed)} />
                     {title}
                 </div>
                     <div>

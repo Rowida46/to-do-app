@@ -1,7 +1,7 @@
 import AddToDoItem from "../components/AddToDoItem"
 import ToDoItem from "../components/ToDoItem"
 
-export const ToDoItemList = ({ toggleToDoStatus, todoList, updateToDoStatus, removeToDoStatus }) => {
+export const ToDoItemList = ({ toggleToDoStatus, todoList, updateToDoStatus, removeToDoStatus, addToDoItem }) => {
     return <section class="vh-100" >
         <div class="container py-5 h-100" bgColor="#e2d5de">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -9,7 +9,7 @@ export const ToDoItemList = ({ toggleToDoStatus, todoList, updateToDoStatus, rem
                     <div class="card" >
                         <div class="card-body p-5" style={{ borderRadius: '15px!important' }}>
                             <h6 class="mb-3">Awesome Todo List</h6>
-                            <AddToDoItem />
+                            <AddToDoItem addToDoItem={addToDoItem} />
                             <ul class="list-group mb-0">{todoList && todoList.map(todo =>
                                 < ToDoItem key={todo.id} todoitem={todo} toggleToDoStatus={toggleToDoStatus}
                                     updateToDoStatus={updateToDoStatus} removeToDoStatus={removeToDoStatus} />
