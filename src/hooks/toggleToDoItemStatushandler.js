@@ -4,14 +4,15 @@ export const toggleToDoStatushandler = async (todoId, dispatch, completeStatus, 
     dispatch({ type: 'TOGGLE_COMPLETE_TODO_ITEM', payload: todoId })
 
     try {
-        const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${todoId}`,
+        const response = await fetch(`http://localhost:8000/todos/toggle/${todoId}`,
             {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ completed: !completeStatus }),
+                body: JSON.stringify({ isCompleted: !completeStatus }),
             });
+        console.log(response, 'lll', todoId)
         if (!response.ok) {
             throw new Error('Failed to update todo status');
         }
